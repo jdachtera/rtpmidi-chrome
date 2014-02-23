@@ -1,0 +1,3 @@
+[submodule "src/node-rtpmidi"]
+	path = src/node-rtpmidi
+	url = https://github.com/jdachtera/node-rtpmidi.git

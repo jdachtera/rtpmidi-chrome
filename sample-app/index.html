@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="helloRtpmidi" ng-csp>
+<head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+    <link href="styles/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="styles/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+
+    <script src="js/jquery-1.11.0.min.js"></script>
+
+    <script src="styles/bootstrap/js/bootstrap.js"></script>
+
+    <script src="js/angular.js"></script>
+    <script src="js/rtpmidi-chrome.js"></script>
+    <script src="js/frontend.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>RTP Midi Sample App</h1>
+        <div class="row" ng-controller="MainCtrl">
+            <div class="col-md-6">
+                <h2>Connections: </h2>
+                <ul>
+                    <li ng-repeat="stream in session.streams">
+                <span ng-if="stream.isConnected">
+                    {{ stream.name }}, {{ stream.rinfo1.address }}:{{ stream.rinfo1.port }}
+                    <a class="btn" ng-click="stream.end()">Disconnect</a>
+                </span>
+                <span ng-if="!stream.isConnected">
+                    Connecting...
+                </span>
+
+                    </li>
+                </ul>
+
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label class="sr-only">IP Address</label>
+                        <input size="15" type="text" class="form-control" placeholder="IP Address" ng-model="address" />
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" >Password</label>
+                        <input type="text" size="6" ng-model="port" class="form-control" placeholder="Port">
+                    </div>
+
+                    <a class="btn btn-primary" ng-click="connect()">Connect</a>
+                </form>
+
+            </div>
+            <div class="col-md-6">
+                <h1>SMTPE: {{ mtc.getSMTPEString() }}</h1>
+                <h1>Song Position: {{ mtc.songPosition }}</h1>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
