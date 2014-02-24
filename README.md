@@ -3,7 +3,7 @@
 This is a port of [node-rtpmidi](https://github.com/jdachtera/node-rtpmidi) to the Chrome Apps platform.
 It uses the experimental Chrome udp api via [chrome-dgram](https://github.com/feross/chrome-dgram).
 
-Download [rtpmidi-chrome.js](https://github.com/jdachtera/rtpmidi-chrome/blob/master/sample-app/js/rtpmidi-chrome.js) and include it in your App.
+Download [rtpmidi-chrome.js](https://raw2.github.com/jdachtera/rtpmidi-chrome/master/sample-app/js/rtpmidi-chrome.js) and include it in your App.
 
 There is also a sample App using angular.js:
 
