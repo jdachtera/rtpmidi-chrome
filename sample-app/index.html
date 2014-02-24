@@ -21,7 +21,21 @@
     <div class="container">
         <h1>RTP Midi Sample App</h1>
         <div class="row" ng-controller="MainCtrl">
+
             <div class="col-md-6">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label class="sr-only">IP Address</label>
+                        <input size="15" type="text" class="form-control" placeholder="IP Address" ng-model="address" />
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" >Password</label>
+                        <input type="text" size="6" ng-model="port" class="form-control" placeholder="Port">
+                    </div>
+
+                    <a class="btn btn-primary" ng-click="connect()">Connect</a>
+                </form>
+
                 <h2>Connections: </h2>
                 <ul>
                     <li ng-repeat="stream in session.streams">
@@ -36,23 +50,17 @@
                     </li>
                 </ul>
 
-                <form class="form-inline" role="form">
-                    <div class="form-group">
-                        <label class="sr-only">IP Address</label>
-                        <input size="15" type="text" class="form-control" placeholder="IP Address" ng-model="address" />
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" >Password</label>
-                        <input type="text" size="6" ng-model="port" class="form-control" placeholder="Port">
-                    </div>
-
-                    <a class="btn btn-primary" ng-click="connect()">Connect</a>
-                </form>
-
             </div>
             <div class="col-md-6">
                 <h1>SMTPE: {{ mtc.getSMTPEString() }}</h1>
                 <h1>Song Position: {{ mtc.songPosition }}</h1>
+
+                <h2>Midi Messages: <a class="btn" ng-click="clearMessages()">Clear</a></h2>
+                <div class="midiMessages">
+                    <div ng-repeat="message in messages">
+                        {{ formatMessage(message) }}
+                    </div>
+                </div>
 
             </div>
 

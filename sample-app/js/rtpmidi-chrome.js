@@ -3095,14 +3095,12 @@ Socket.prototype.ref = function () {
 module.exports=require('+nV/x3');
 },{}],"+nV/x3":[function(require,module,exports){
 module.exports = require('chrome-dgram');
-},{"chrome-dgram":13}],"rtpmidi":[function(require,module,exports){
-module.exports=require('cKJUDM');
-},{}],"cKJUDM":[function(require,module,exports){
+},{"chrome-dgram":13}],"cKJUDM":[function(require,module,exports){
 (function (process){
 "use strict";
 
 process.on = function(eventName, callback) {
-  if ('eventName' == 'SIGINT') {
+  if (eventName == 'SIGINT') {
     chrome.app.window.current().onClosed.addListener(callback);
   }
 };
@@ -3119,25 +3117,25 @@ module.exports = {
 
 
 }).call(this,require("/Volumes/HD/dev/repositories/rtpmidi-chrome/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./node-rtpmidi/src/AbstractMessage":21,"./node-rtpmidi/src/ControlMessage":22,"./node-rtpmidi/src/MTC":23,"./node-rtpmidi/src/RTPMessage":25,"./node-rtpmidi/src/Session":26,"./node-rtpmidi/src/Stream":27,"./node-rtpmidi/src/manager":28,"/Volumes/HD/dev/repositories/rtpmidi-chrome/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":9}],"IeR/1B":[function(require,module,exports){
+},{"./node-rtpmidi/src/AbstractMessage":21,"./node-rtpmidi/src/ControlMessage":22,"./node-rtpmidi/src/MTC":23,"./node-rtpmidi/src/RTPMessage":25,"./node-rtpmidi/src/Session":26,"./node-rtpmidi/src/Stream":27,"./node-rtpmidi/src/manager":28,"/Volumes/HD/dev/repositories/rtpmidi-chrome/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":9}],"rtpmidi":[function(require,module,exports){
+module.exports=require('cKJUDM');
+},{}],"mdns":[function(require,module,exports){
+module.exports=require('IeR/1B');
+},{}],"IeR/1B":[function(require,module,exports){
 module.exports = {};
 
 throw 'dont use mdns'
-},{}],"mdns":[function(require,module,exports){
-module.exports=require('IeR/1B');
 },{}],20:[function(require,module,exports){
 if (window.angular) {
   angular.module('rtpmidi', []).
-    factory('rtpmidi', function($timeout) {
+    factory('rtpmidi', function($rootScope, $timeout) {
       var EventEmitter = require("events").EventEmitter;
 
+      // Monkey patch EventEmitter to make Angular perfom a digest
       var emit = EventEmitter.prototype.emit;
       EventEmitter.prototype.emit = function() {
-        var that = this;
-        emit.apply(that, arguments);
-        $timeout(function() {
-
-        })
+        emit.apply(this, arguments);
+        $timeout(function() {});
       };
 
       return require('rtpmidi')

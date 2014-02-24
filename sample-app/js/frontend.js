@@ -17,6 +17,28 @@ angular.module('helloRtpmidi', ['rtpmidi']).
       port: 5006
     });
 
+    $scope.messages = [];
+
+    $scope.session.on('message', function(deltaTime, message) {
+      $scope.messages.unshift(message);
+      if ($scope.messages.length > 10) {
+        $scope.messages.length = 10;
+      }
+    });
+
+    $scope.clearMessages = function() {
+      $scope.messages.length = 0;
+    };
+
+    $scope.formatMessage = function(message) {
+      var output = '', piece;
+      for (var i = 0; i < message.length; i++) {
+        var piece = message[i];
+        output += '0x' + (piece < 0x10 ? '0' : '') + piece.toString(16) + ' ';
+      }
+      return output;
+    };
+
 
     $scope.connect = function() {
       chrome.storage.local.set({

@@ -2,3 +2,13 @@ body {
     background-color: #bbb;
     color: #666;
 }
+
+.midiMessages {
+    width: 100%;
+    height: 100px;
+    overflow-y: scroll;
+    background: #eee;
+    border: 1px inset;
+    padding: 4px;
+    color: black;
+}

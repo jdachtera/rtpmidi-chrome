@@ -1,7 +1,7 @@
 "use strict";
 
 process.on = function(eventName, callback) {
-  if ('eventName' == 'SIGINT') {
+  if (eventName == 'SIGINT') {
     chrome.app.window.current().onClosed.addListener(callback);
   }
 };

@@ -1,15 +1,13 @@
 if (window.angular) {
   angular.module('rtpmidi', []).
-    factory('rtpmidi', function($timeout) {
+    factory('rtpmidi', function($rootScope, $timeout) {
       var EventEmitter = require("events").EventEmitter;
 
+      // Monkey patch EventEmitter to make Angular perfom a digest
       var emit = EventEmitter.prototype.emit;
       EventEmitter.prototype.emit = function() {
-        var that = this;
-        emit.apply(that, arguments);
-        $timeout(function() {
-
-        })
+        emit.apply(this, arguments);
+        $timeout(function() {});
       };
 
       return require('rtpmidi')
