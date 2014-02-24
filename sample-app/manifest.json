@@ -14,12 +14,12 @@
   },
   "permissions": [
     "storage",
-    "experimental",
-    {
-      "socket": [
+
+    {"socket":
+      [
         "udp-send-to::*",
         "udp-bind::*"
       ]
-    }
+}
   ]
 }
